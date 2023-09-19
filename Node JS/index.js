@@ -1,3 +1,6 @@
+//Task - Take input for calculation of Sum 
+//3 Ways to Take input - Query Params, Headers, Body
+
 const express = require('express');
 const app = express();
 const port = 3000;
@@ -10,21 +13,21 @@ function sum(counter){
     return sum; 
 }
 
-function handleRequest(req, res){
-    var calculateSum = sum(100);        //Here 100 is hardCoded so, we'll try to take user input for calculation of sum in next part.
-    console.log(calculateSum);
+function handleRequest(req, res){   //For input part -> req parameter 
+    var counter = req.query.counter;    //Input gets catched Here
+    var calculateSum = sum(counter);        
+    console.log(calculateSum);      // Calculated sum gets logged in Terminal!
     var ans = "The Sum is " + calculateSum;
     res.send(ans);
 }
 
-app.get('/', handleRequest);    //Route : '/' on which the callback Function handleRequest needs to be called
+app.get('/', handleRequest); 
 
 function welcome(req, res){
-    alert("Welcome");   //Not Defined ReferenceError -> Prompt method will not work.
     res.send("User Route");
 }
 
-app.get('/User', welcome);       //Route : '/User' on which the callback Function welcome needs to be called      
+app.get('/User', welcome);      
 
 function started(){
     console.log(`Example app listening on port ${port}`);
@@ -32,5 +35,3 @@ function started(){
 
 app.listen(port, started);
 
-// Note - res.send() will throw an error if you are sending a number as it by default identifies it as status code - only 400;
-// Soln - Use tostring fn on number 
