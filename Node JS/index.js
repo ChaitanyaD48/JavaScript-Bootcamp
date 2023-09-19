@@ -20,6 +20,7 @@ function handleRequest(req, res){
 app.get('/', handleRequest);    //Route : '/' on which the callback Function handleRequest needs to be called
 
 function welcome(req, res){
+    alert("Welcome");   //Not Defined ReferenceError -> Prompt method will not work.
     res.send("User Route");
 }
 
@@ -30,3 +31,6 @@ function started(){
 }
 
 app.listen(port, started);
+
+// Note - res.send() will throw an error if you are sending a number as it by default identifies it as status code - only 400;
+// Soln - Use tostring fn on number 
