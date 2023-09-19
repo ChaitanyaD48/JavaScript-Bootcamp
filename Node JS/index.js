@@ -17,7 +17,13 @@ function handleRequest(req, res){
     res.send(ans);
 }
 
-app.get('/', handleRequest);
+app.get('/', handleRequest);    //Route : '/' on which the callback Function handleRequest needs to be called
+
+function welcome(req, res){
+    res.send("User Route");
+}
+
+app.get('/User', welcome);       //Route : '/User' on which the callback Function welcome needs to be called      
 
 function started(){
     console.log(`Example app listening on port ${port}`);
