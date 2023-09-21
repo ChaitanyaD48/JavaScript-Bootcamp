@@ -15,10 +15,14 @@ function sum(counter){
 
 function handleRequest(req, res){   
     var counter  = req.body.counter;
-    // console.log(req.body); 
-    var calculateSum = sum(counter);        
-    var ans = "The Sum is " + calculateSum;
-    res.send(ans);
+    if(counter < 100000){
+        var calculateSum = sum(counter);      
+        var ans = "The Sum is " + calculateSum;
+        res.send(ans);
+    }else{
+        res.status(411).send("You have sent a very Large Number");
+        // res.status(200).send("You have sent a very Large Number");
+    }
 }
 
 app.post('/', handleRequest); 
