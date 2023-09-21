@@ -7,36 +7,46 @@ app.use(bodyParser.json());
 
 function sum(counter){
     var sum = 0;
-    for(let i=0;i<counter;i++){
+    for(let i=0;i<=counter;i++){
         sum = sum + i;
     }
     return sum; 
 }
 
-function handleRequest(req, res){ 
-    // Response body returns a JSON;
+function mul(counter){
+    var sum = 1;
+    for(let i=1;i<=counter;i++){
+        sum = sum * i;
+    }
+    return sum; 
+}
 
+function handleRequest(req, res){ 
     var counter = req.body.counter;
     var calculateSum = sum(counter);
+    var calculateMul = mul(counter);
     var answerObject = {
-        sum: calculateSum
+        Sum: calculateSum,
+        Multiplication: calculateMul
     }
     res.status(200).send(answerObject);
-
-    // Response body returns a simple Text;
-
-    // var counter  = req.body.counter;
-    // if(counter < 100000){
-    //     var calculateSum = sum(counter);      
-    //     var ans = "The Sum is " + calculateSum;
-    //     res.send(ans);
-    // }else{
-    //     res.status(411).send("You have sent a very Large Number");  
-    //     // res.status(200).send("You have sent a very Large Number");
-    // }
 }
 
 app.post('/', handleRequest); 
+
+// Way to tpass HTML as response body
+
+function giveHtml(req, res){
+    // res.send("Hi There!")   -> Simple HTML
+    res.send(`<head>
+                <title> Hi There </title>
+            </head>
+            <body>
+                <i>Hi There!</i>
+            </body>`)
+}
+
+app.get('/getHTML', giveHtml);
 
 function welcome(req, res){
     res.send("User Route");
