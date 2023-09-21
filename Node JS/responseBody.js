@@ -44,6 +44,8 @@ function giveHtml(req, res){
             <body>
                 <i>Hi There!</i>
             </body>`)
+    
+    // res.sendFile(__dirname + "/index.html");   -> Another way to send HTML File Directly
 }
 
 app.get('/getHTML', giveHtml);
