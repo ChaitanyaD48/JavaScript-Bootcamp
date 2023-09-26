@@ -1,9 +1,14 @@
+function logResponseBody(jsonBody){
+    console.log(jsonBody);
+}
+
 function callbackFn(result){
-    console.log(result);
+    // console.log(result);
+    result.json().then(logResponseBody);
 }
 
 var sendObj = {
-    method: "POST"
+    method: "GET"
 };
 
-fetch("http://localhost:3000/", sendObj).then(callbackFn)
+fetch("http://localhost:3000/?counter=10", sendObj).then(callbackFn) 

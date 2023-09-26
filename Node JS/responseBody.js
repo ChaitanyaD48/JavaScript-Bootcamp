@@ -22,7 +22,7 @@ function mul(counter){
 }
 
 function handleRequest(req, res){ 
-    var counter = req.body.counter;
+    var counter = req.query.counter;
     var calculateSum = sum(counter);
     var calculateMul = mul(counter);
     var answerObject = {
@@ -32,9 +32,9 @@ function handleRequest(req, res){
     res.status(200).send(answerObject);
 }
 
-app.post('/', handleRequest); 
+app.get('/', handleRequest); 
 
-// Way to tpass HTML as response body
+// Way to to pass HTML as response body
 
 function giveHtml(req, res){
     // res.send("Hi There!")   -> Simple HTML
