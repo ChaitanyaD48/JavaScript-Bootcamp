@@ -8,7 +8,7 @@ function reverse(str){
   function transform(str){
     var ans = "";
     for(var i=0;i<str.length;i++){
-      if(str[i] == " " || ----){  // Test cases 
+      if(str[i] == " "){  // Add Exemptions accroding to Test cases 
         
       }else{
         ans += str[i];
